@@ -1,0 +1,87 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>music app</title>
+    <style>
+        body{
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button{
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="musicplayer"></audio>
+    <br>
+    <button onclick="previousSong()"> Next music</button>
+    <br>
+    <button onclick="playMusic()" id="mainBtn"> play music</button>
+    <br>
+    <button onclick="nextSong()"> Next music</button>
+
+
+<script>
+    const mp = document.getElementById('musicplayer')
+    const mainBtn = document.getElementById('mainBtn')
+    let currentIndex = 0
+    let ispaused = false
+
+    const musicArr = [
+    "music/WhatsApp Audio 2023-08-21 at 16.35.53.mpeg",
+    "music/WhatsApp Audio 2023-08-21 at 16.35.55 (1).mpeg",
+    "music/WhatsApp Audio 2023-08-21 at 16.35.55 (2).mpeg",
+    "music/WhatsApp Audio 2023-08-21 at 16.35.55.mpeg",
+    "music/WhatsApp Audio 2023-08-21 at 16.35.56 (1).mpeg",
+    "music/WhatsApp Audio 2023-08-21 at 16.35.56.mpeg",
+    "music/WhatsApp Audio 2023-08-21 at 16.35.57.mpeg",
+    "music/WhatsApp Audio 2023-08-21 at 16.38.17.mpeg", 
+    "music/WhatsApp Audio 2023-08-21 at 16.38.18 (1).mpeg",
+    "music/WhatsApp Audio 2023-08-21 at 16.38.18.mpeg"]
+
+    mainBtn.addEventListener('click' , () => ispaused = !ispaused)
+
+
+    const playMusic = () =>{
+        
+        
+       
+        mp.src = musicArr[currentIndex]
+            mp.play()
+
+        console.log(ispaused + " <= ispaused")
+
+    
+    }
+
+    const nextSong = () =>{
+        currentIndex++;
+        if(currentIndex > musicArr.length-1){
+            currentIndex = 0
+        }
+
+        playMusic()
+
+    }
+
+    const previousSong = () =>{
+        currentIndex--;
+         if(currentIndex < 0){
+            currentIndex = musicArr.length -1
+        }
+
+        playMusic()
+
+    }
+
+</script>
+    
+</body>
+</html>
